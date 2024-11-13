@@ -2,7 +2,6 @@ package ro.pub.cs.systems.eim.practicaltestvar07
 
 import android.os.Bundle
 import android.widget.TextView
-import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 
 class PracticalTest01Var06SecondaryActivity : AppCompatActivity() {
@@ -11,24 +10,16 @@ class PracticalTest01Var06SecondaryActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_practical_test01_var06_secondary)
 
-        // Obținem intenția care a lansat această activitate
-        val intent = intent
+        // Obținem datele din intenție
+        val numbers = intent.getStringArrayExtra("numbers") ?: arrayOf("?", "?", "?")
+        val checkedBoxes = intent.getIntExtra("checkedBoxes", 0)
 
-        // Extragem datele din intenție
-        val number1 = intent.getStringExtra("NUMBER1")
-        val number2 = intent.getStringExtra("NUMBER2")
-        val number3 = intent.getStringExtra("NUMBER3")
-        val checkedCount = intent.getIntExtra("CHECKED_COUNT", 0)
+        // Verificăm dacă toate numerele sunt la fel (ignorând asteriscul)
+        val isMatch = numbers[0] == numbers[1] && numbers[1] == numbers[2] &&
+                (numbers[0] != "*" || numbers[1] != "*" || numbers[2] != "*")
 
-        // Afișăm numerele primite
-        val numbersTextView = findViewById<TextView>(R.id.numbersTextView)
-        numbersTextView.text = "Numere primite: $number1, $number2, $number3"
-
-        // Verificăm dacă numerele sunt la fel (inclusiv asteriscul ca joker)
-        val isMatched = number1 == number2 && number2 == number3
-
-        // Calculăm câștigul
-        val prize = when (checkedCount) {
+        // Calculăm câștigul pe baza numărului de checkbox-uri bifate
+        val cash = when (checkedBoxes) {
             0 -> 100
             1 -> 50
             2 -> 10
@@ -37,14 +28,14 @@ class PracticalTest01Var06SecondaryActivity : AppCompatActivity() {
 
         // Afișăm rezultatul
         val resultTextView = findViewById<TextView>(R.id.resultTextView)
+        val cashTextView = findViewById<TextView>(R.id.cashTextView)
 
-        if (isMatched) {
-            resultTextView.text = "Gained: $prize"
+        if (isMatch) {
+            resultTextView.text = "Gained"
         } else {
-            resultTextView.text = "No match. Gained: $prize"
+            resultTextView.text = "Not Gained"
         }
 
-        // Afișăm un Toast cu câștigul
-        Toast.makeText(this, "Câștig: $prize", Toast.LENGTH_SHORT).show()
+        cashTextView.text = "Cash: $cash"
     }
 }
