@@ -1,0 +1,86 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/main"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".PracticalTest01Var06">
+
+    <!-- Primul câmp text editabil pe aceeași linie -->
+    <EditText
+        android:id="@+id/number1"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:hint="Număr 1"
+        android:inputType="number"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toStartOf="@+id/number2"
+        app:layout_constraintHorizontal_weight="1" />
+
+    <!-- Al doilea câmp text editabil pe aceeași linie -->
+    <EditText
+        android:id="@+id/number2"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:hint="Număr 2"
+        android:inputType="number"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/number1"
+        app:layout_constraintEnd_toStartOf="@+id/number3"
+        app:layout_constraintHorizontal_weight="1" />
+
+    <!-- Al treilea câmp text editabil pe aceeași linie -->
+    <EditText
+        android:id="@+id/number3"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:hint="Număr 3"
+        android:inputType="number"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/number2"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_weight="1" />
+
+    <!-- Primul checkbox pe aceeași linie -->
+    <CheckBox
+        android:id="@+id/checkbox1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Checkbox 1"
+        app:layout_constraintTop_toBottomOf="@+id/number1"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toStartOf="@+id/checkbox2" />
+
+    <!-- Al doilea checkbox pe aceeași linie -->
+    <CheckBox
+        android:id="@+id/checkbox2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Checkbox 2"
+        app:layout_constraintTop_toBottomOf="@+id/number1"
+        app:layout_constraintStart_toEndOf="@+id/checkbox1"
+        app:layout_constraintEnd_toStartOf="@+id/checkbox3" />
+
+    <!-- Al treilea checkbox pe aceeași linie -->
+    <CheckBox
+        android:id="@+id/checkbox3"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Checkbox 3"
+        app:layout_constraintTop_toBottomOf="@+id/number1"
+        app:layout_constraintStart_toEndOf="@+id/checkbox2"
+        app:layout_constraintEnd_toEndOf="parent" />
+
+    <!-- Butonul "Play" centrat pe orizontală -->
+    <Button
+        android:id="@+id/playButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Play"
+        app:layout_constraintTop_toBottomOf="@+id/checkbox1"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>
