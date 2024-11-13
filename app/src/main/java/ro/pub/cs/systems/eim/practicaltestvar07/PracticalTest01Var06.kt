@@ -35,6 +35,7 @@ class PracticalTest01Var06 : AppCompatActivity() {
         val checkbox2 = findViewById<CheckBox>(R.id.checkbox2)
         val checkbox3 = findViewById<CheckBox>(R.id.checkbox3)
         val playButton = findViewById<Button>(R.id.playButton)
+        val computeButton = findViewById<Button>(R.id.computeButton)
 
         // Setăm ascultător pentru butonul "Play"
         playButton.setOnClickListener {
@@ -55,11 +56,32 @@ class PracticalTest01Var06 : AppCompatActivity() {
             // Afișăm un Toast cu numerele generate
             Toast.makeText(this, "Numere generate: ${randomNumbers.joinToString(", ")}", Toast.LENGTH_SHORT).show()
         }
+
+        // Setăm ascultător pentru butonul "Compute"
+        computeButton.setOnClickListener {
+            // Preluăm datele necesare pentru activitatea secundară
+            val randomNumbers = arrayOf(generateRandomNumber(), generateRandomNumber(), generateRandomNumber())
+            val checkedBoxes = countCheckedBoxes(checkbox1, checkbox2, checkbox3)
+
+            // Creăm intenția pentru activitatea secundară
+            val intent = Intent(this, PracticalTest01Var06SecondaryActivity::class.java).apply {
+                putExtra("numbers", randomNumbers)
+                putExtra("checkedBoxes", checkedBoxes)
+            }
+
+            // Lansăm activitatea secundară
+            startActivity(intent)
+        }
     }
 
     // Functie care generează un număr aleatoriu din setul {1, 2, 3, *}
     private fun generateRandomNumber(): String {
         val values = listOf("1", "2", "3", "*")
         return values[Random.nextInt(values.size)]
+    }
+
+    // Funcție pentru a număra checkbox-urile bifate
+    private fun countCheckedBoxes(vararg checkBoxes: CheckBox): Int {
+        return checkBoxes.count { it.isChecked }
     }
 }
